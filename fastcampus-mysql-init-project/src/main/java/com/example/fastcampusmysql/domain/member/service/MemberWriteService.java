@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class MemberWriteService {
     final private MemberRepository memberRepository;
-    public void create(RegisterMemberCommand command) {
+    public Member register(RegisterMemberCommand command) {
 
         /*
 - 회원정보를 등록한다.
@@ -19,10 +19,11 @@ public class MemberWriteService {
 
         var member = Member.builder()
                 .nickname(command.nickname())
-                .birthDay(command.birthday())
                 .email(command.email())
+                .birthDay(command.birthday())
                 .build();
-        memberRepository.save(member);
+        return memberRepository.save(member);
+
     }
 
 }
